@@ -4,7 +4,31 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    <h1>Welcome</h1>
+    <h1>Records</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">email</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if records %}
+                {% for record in records %}
+                <tr>
+                    <th scope="row">{{ record.id }}</th>
+                    <td>{{ record.first_name }}</td>
+                    <td>{{ record.last_name }}</td>
+                    <td>@{{ record.email }}</td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+          
+        </tbody>
+    </table>
+    
 {% else %}
     <div class="col-md-6 offset-md-3">
         <h1>Login</h1>
